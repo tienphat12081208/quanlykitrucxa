@@ -1,0 +1,363 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{84560C8C-5F70-4956-90C2-4932857B1A22}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Quan_Ly_Sinh_Vien</RootNamespace>
+    <AssemblyName>Quan_Ly_Sinh_Vien</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.Charts.v17.1.Core, Version=17.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Data.v17.1, Version=17.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Office.v17.1.Core, Version=17.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Pdf.v17.1.Core, Version=17.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.PivotGrid.v17.1.Core, Version=17.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Printing.v17.1.Core, Version=17.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.RichEdit.v17.1.Core, Version=17.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.RichEdit.v17.1.Export, Version=17.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Sparkline.v17.1.Core, Version=17.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Utils.v17.1, Version=17.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Utils.v17.1.UI, Version=17.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraCharts.v17.1, Version=17.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraEditors.v17.1, Version=17.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraGauges.v17.1.Core, Version=17.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraPrinting.v17.1, Version=17.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraReports.v17.1, Version=17.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraReports.v17.1.Extensions, Version=17.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.900.148\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.900.148\lib\net40\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.900.148\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.900.148\lib\net40\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.900.148\lib\net40\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Dangnhap.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dangnhap.Designer.cs">
+      <DependentUpon>Dangnhap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Loaiphong.cs">
+      <DependentUpon>QuanlySVKTX.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LoaiPhongKTX.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoaiPhongKTX.Designer.cs">
+      <DependentUpon>LoaiPhongKTX.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Phieudathutien.cs">
+      <DependentUpon>QuanlySVKTX.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PhieudiennuocKTX.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PhieudiennuocKTX.Designer.cs">
+      <DependentUpon>PhieudiennuocKTX.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Phong.cs">
+      <DependentUpon>QuanlySVKTX.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PhongKTX.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PhongKTX.Designer.cs">
+      <DependentUpon>PhongKTX.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QuanLyKTXSVDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QuanLyKTXSVDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="QuanlySVKTX.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QuanlySVKTX.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="QuanlySVKTX.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QuanlySVKTX.tt</DependentUpon>
+    </Compile>
+    <Compile Include="QuanlySVKTX.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QuanlySVKTX.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="QuanLyTaiKhoan_KTX.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="QuanLyTaiKhoan_KTX.Designer.cs">
+      <DependentUpon>QuanLyTaiKhoan_KTX.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportSinhvien.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportSinhvien.Designer.cs">
+      <DependentUpon>ReportSinhvien.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportSVTheoP_KTX.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportSVTheoP_KTX.Designer.cs">
+      <DependentUpon>ReportSVTheoP_KTX.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sinhvien.cs">
+      <DependentUpon>QuanlySVKTX.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SinhvienKTX.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SinhvienKTX.Designer.cs">
+      <DependentUpon>SinhvienKTX.cs</DependentUpon>
+    </Compile>
+    <Compile Include="sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>QuanlySVKTX.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_helpdiagrams_Result.cs">
+      <DependentUpon>QuanlySVKTX.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SqlServerTypes\Loader.cs" />
+    <Compile Include="sysdiagram.cs">
+      <DependentUpon>QuanlySVKTX.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Taikhoan.cs">
+      <DependentUpon>QuanlySVKTX.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Thanhpho.cs">
+      <DependentUpon>QuanlySVKTX.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ThanhphoKTX.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ThanhphoKTX.Designer.cs">
+      <DependentUpon>ThanhphoKTX.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ThongkediennuocKTX.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ThongkediennuocKTX.Designer.cs">
+      <DependentUpon>ThongkediennuocKTX.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TimkiemSV_KTX.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TimkiemSV_KTX.Designer.cs">
+      <DependentUpon>TimkiemSV_KTX.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Trangchu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Trangchu.Designer.cs">
+      <DependentUpon>Trangchu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Truong.cs">
+      <DependentUpon>QuanlySVKTX.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TruongKTX.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TruongKTX.Designer.cs">
+      <DependentUpon>TruongKTX.cs</DependentUpon>
+    </Compile>
+    <Compile Include="usp_Danhsachphong_Result.cs">
+      <DependentUpon>QuanlySVKTX.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_DanhsachSV_Result.cs">
+      <DependentUpon>QuanlySVKTX.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_DSPhong_Result.cs">
+      <DependentUpon>QuanlySVKTX.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_DS_Taikhoan_Result.cs">
+      <DependentUpon>QuanlySVKTX.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_KTDN_TK_Result.cs">
+      <DependentUpon>QuanlySVKTX.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_LocDSSVtheoMSSV_Result.cs">
+      <DependentUpon>QuanlySVKTX.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_LocSVtheoPhong_Result.cs">
+      <DependentUpon>QuanlySVKTX.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_Thongkediennuoc_Result.cs">
+      <DependentUpon>QuanlySVKTX.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_Tiendiennuoc_Result.cs">
+      <DependentUpon>QuanlySVKTX.tt</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Dangnhap.resx">
+      <DependentUpon>Dangnhap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoaiPhongKTX.resx">
+      <DependentUpon>LoaiPhongKTX.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PhieudiennuocKTX.resx">
+      <DependentUpon>PhieudiennuocKTX.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PhongKTX.resx">
+      <DependentUpon>PhongKTX.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="QuanLyTaiKhoan_KTX.resx">
+      <DependentUpon>QuanLyTaiKhoan_KTX.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportSinhvien.resx">
+      <DependentUpon>ReportSinhvien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportSVtheoPhong.rdlc" />
+    <EmbeddedResource Include="ReportSVTheoP_KTX.resx">
+      <DependentUpon>ReportSVTheoP_KTX.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report_Sinhvien.rdlc" />
+    <EmbeddedResource Include="SinhvienKTX.resx">
+      <DependentUpon>SinhvienKTX.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ThanhphoKTX.resx">
+      <DependentUpon>ThanhphoKTX.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ThongkediennuocKTX.resx">
+      <DependentUpon>ThongkediennuocKTX.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TimkiemSV_KTX.resx">
+      <DependentUpon>TimkiemSV_KTX.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Trangchu.resx">
+      <DependentUpon>Trangchu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TruongKTX.resx">
+      <DependentUpon>TruongKTX.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="QuanLyKTXSVDataSet.xsc">
+      <DependentUpon>QuanLyKTXSVDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="QuanLyKTXSVDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>QuanLyKTXSVDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="QuanLyKTXSVDataSet.xss">
+      <DependentUpon>QuanLyKTXSVDataSet.xsd</DependentUpon>
+    </None>
+    <EntityDeploy Include="QuanlySVKTX.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>QuanlySVKTX.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="QuanlySVKTX.edmx.diagram">
+      <DependentUpon>QuanlySVKTX.edmx</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="QuanlySVKTX.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>QuanlySVKTX.edmx</DependentUpon>
+      <LastGenOutput>QuanlySVKTX.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="QuanlySVKTX.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>QuanlySVKTX.edmx</DependentUpon>
+      <LastGenOutput>QuanlySVKTX.cs</LastGenOutput>
+    </Content>
+    <Content Include="SqlServerTypes\readme.htm" />
+    <Content Include="SqlServerTypes\x64\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x64\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

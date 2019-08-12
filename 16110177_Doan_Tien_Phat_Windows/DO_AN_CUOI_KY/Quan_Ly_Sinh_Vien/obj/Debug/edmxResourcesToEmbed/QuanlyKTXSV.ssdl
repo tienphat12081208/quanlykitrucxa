@@ -1,0 +1,303 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QuanLyKTXSVModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Loaiphong">
+    <Key>
+      <PropertyRef Name="MaLP" />
+    </Key>
+    <Property Name="MaLP" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="TenLP" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="Tiendien" Type="int" />
+    <Property Name="Tiennuoc" Type="int" />
+  </EntityType>
+  <EntityType Name="Phieudathutien">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Sonuoc" Type="int" />
+    <Property Name="Tongtiennuoc" Type="int" />
+    <Property Name="Sodien" Type="int" />
+    <Property Name="Tongtiendien" Type="int" Nullable="false" />
+    <Property Name="Tongtien" Type="int" />
+    <Property Name="Maphong" Type="int" />
+  </EntityType>
+  <EntityType Name="Phong">
+    <Key>
+      <PropertyRef Name="Maphong" />
+    </Key>
+    <Property Name="Maphong" Type="int" Nullable="false" />
+    <Property Name="Toanha" Type="nchar" MaxLength="10" />
+    <Property Name="Sodien" Type="int" />
+    <Property Name="Sonuoc" Type="int" />
+    <Property Name="Loaiphong" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="Sinhvien">
+    <Key>
+      <PropertyRef Name="MSSV" />
+    </Key>
+    <Property Name="MSSV" Type="int" Nullable="false" />
+    <Property Name="Hoten" Type="nchar" MaxLength="10" />
+    <Property Name="Gioitinh" Type="nchar" MaxLength="10" />
+    <Property Name="Truonghoc" Type="nchar" MaxLength="10" />
+    <Property Name="Ngaysinh" Type="date" />
+    <Property Name="SoDT" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="Noisinh" Type="int" />
+    <Property Name="Maphong" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Taikhoan">
+    <Key>
+      <PropertyRef Name="username" />
+    </Key>
+    <Property Name="username" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="password" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="Thanhpho">
+    <Key>
+      <PropertyRef Name="MaTP" />
+    </Key>
+    <Property Name="MaTP" Type="int" Nullable="false" />
+    <Property Name="TenTP" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="Truong">
+    <Key>
+      <PropertyRef Name="Matruong" />
+    </Key>
+    <Property Name="Matruong" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="Tentruong" Type="nchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK_Phong_Loaiphong">
+    <End Role="Loaiphong" Type="Self.Loaiphong" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Phong" Type="Self.Phong" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Loaiphong">
+        <PropertyRef Name="MaLP" />
+      </Principal>
+      <Dependent Role="Phong">
+        <PropertyRef Name="Loaiphong" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sinhvien_Phong">
+    <End Role="Phong" Type="Self.Phong" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Sinhvien" Type="Self.Sinhvien" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Phong">
+        <PropertyRef Name="Maphong" />
+      </Principal>
+      <Dependent Role="Sinhvien">
+        <PropertyRef Name="Maphong" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sinhvien_Thanhpho">
+    <End Role="Thanhpho" Type="Self.Thanhpho" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Sinhvien" Type="Self.Sinhvien" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Thanhpho">
+        <PropertyRef Name="MaTP" />
+      </Principal>
+      <Dependent Role="Sinhvien">
+        <PropertyRef Name="Noisinh" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sinhvien_Truong">
+    <End Role="Truong" Type="Self.Truong" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Sinhvien" Type="Self.Sinhvien" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Truong">
+        <PropertyRef Name="Matruong" />
+      </Principal>
+      <Dependent Role="Sinhvien">
+        <PropertyRef Name="Truonghoc" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="ups_CapnhatLP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="MaLP" Type="nchar" Mode="In" />
+    <Parameter Name="TenLP" Type="nchar" Mode="In" />
+    <Parameter Name="Tiendien" Type="money" Mode="In" />
+    <Parameter Name="Tiennuoc" Type="money" Mode="In" />
+  </Function>
+  <Function Name="ups_CapnhatPhong" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Maphong" Type="int" Mode="In" />
+    <Parameter Name="Toanha" Type="nvarchar" Mode="In" />
+    <Parameter Name="Sodien" Type="int" Mode="In" />
+    <Parameter Name="Sonuoc" Type="int" Mode="In" />
+    <Parameter Name="Loaiphong" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="ups_CapnhatSV" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="MSSV" Type="int" Mode="In" />
+    <Parameter Name="Hoten" Type="nvarchar" Mode="In" />
+    <Parameter Name="Gioitinh" Type="nvarchar" Mode="In" />
+    <Parameter Name="Truonghoc" Type="nvarchar" Mode="In" />
+    <Parameter Name="Ngaysinh" Type="date" Mode="In" />
+    <Parameter Name="SoDT" Type="nvarchar" Mode="In" />
+    <Parameter Name="Noisinh" Type="int" Mode="In" />
+    <Parameter Name="Maphong" Type="int" Mode="In" />
+  </Function>
+  <Function Name="ups_CapnhatTK" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="username" Type="nchar" Mode="In" />
+    <Parameter Name="password" Type="nchar" Mode="In" />
+  </Function>
+  <Function Name="ups_CapnhatTP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="MaTP" Type="int" Mode="In" />
+    <Parameter Name="TenTP" Type="nchar" Mode="In" />
+  </Function>
+  <Function Name="ups_CapnhatTruong" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Matruong" Type="nchar" Mode="In" />
+    <Parameter Name="Tentruong" Type="nchar" Mode="In" />
+  </Function>
+  <Function Name="ups_XoaLP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="MaLP" Type="nchar" Mode="In" />
+  </Function>
+  <Function Name="ups_XoaPhong" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Maphong" Type="int" Mode="In" />
+  </Function>
+  <Function Name="ups_XoaSV" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="MSSV" Type="int" Mode="In" />
+  </Function>
+  <Function Name="ups_XoaTK" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="username" Type="nchar" Mode="In" />
+  </Function>
+  <Function Name="ups_XoaTP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="MaTP" Type="int" Mode="In" />
+  </Function>
+  <Function Name="ups_XoaTruong" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Matruong" Type="nchar" Mode="In" />
+  </Function>
+  <Function Name="usp_Danhsachphong" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="usp_DanhsachSV" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="usp_DemSLSVtrongPhong" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Maphong" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_DSPhong" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="usp_LocDSSVtheoMSSV" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="MSSV" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_LocSVtheoPhong" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Maphong" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_ThemLP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="MaLP" Type="nchar" Mode="In" />
+    <Parameter Name="TenLP" Type="nchar" Mode="In" />
+    <Parameter Name="Tiendien" Type="money" Mode="In" />
+    <Parameter Name="Tiennuoc" Type="money" Mode="In" />
+  </Function>
+  <Function Name="usp_Themphieudathu" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Sonuoc" Type="int" Mode="In" />
+    <Parameter Name="Tongtiennuoc" Type="int" Mode="In" />
+    <Parameter Name="Sodien" Type="int" Mode="In" />
+    <Parameter Name="Tongtiendien" Type="int" Mode="In" />
+    <Parameter Name="Tongtien" Type="int" Mode="In" />
+    <Parameter Name="Maphong" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_ThemSV" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="MSSV" Type="int" Mode="In" />
+    <Parameter Name="Hoten" Type="nvarchar" Mode="In" />
+    <Parameter Name="Gioitinh" Type="nvarchar" Mode="In" />
+    <Parameter Name="Truonghoc" Type="nvarchar" Mode="In" />
+    <Parameter Name="Ngaysinh" Type="date" Mode="In" />
+    <Parameter Name="SoDT" Type="nvarchar" Mode="In" />
+    <Parameter Name="Noisinh" Type="int" Mode="In" />
+    <Parameter Name="Maphong" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_ThemTK" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="username" Type="nchar" Mode="In" />
+    <Parameter Name="password" Type="nchar" Mode="In" />
+  </Function>
+  <Function Name="usp_ThemTP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="MaTP" Type="int" Mode="In" />
+    <Parameter Name="TenTP" Type="nchar" Mode="In" />
+  </Function>
+  <Function Name="usp_ThemTruong" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Matruong" Type="nchar" Mode="In" />
+    <Parameter Name="Tentruong" Type="nchar" Mode="In" />
+  </Function>
+  <Function Name="usp_TheuPhong" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Maphong" Type="int" Mode="In" />
+    <Parameter Name="Toanha" Type="nvarchar" Mode="In" />
+    <Parameter Name="Sodien" Type="int" Mode="In" />
+    <Parameter Name="Sonuoc" Type="int" Mode="In" />
+    <Parameter Name="Loaiphong" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="usp_Thongkediennuoc" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="usp_Tiendiennuoc" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Maphong" Type="int" Mode="In" />
+  </Function>
+  <EntityContainer Name="QuanLyKTXSVModelStoreContainer">
+    <EntitySet Name="Loaiphong" EntityType="Self.Loaiphong" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Phieudathutien" EntityType="Self.Phieudathutien" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Phong" EntityType="Self.Phong" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Sinhvien" EntityType="Self.Sinhvien" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Taikhoan" EntityType="Self.Taikhoan" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Thanhpho" EntityType="Self.Thanhpho" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Truong" EntityType="Self.Truong" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Phong_Loaiphong" Association="Self.FK_Phong_Loaiphong">
+      <End Role="Loaiphong" EntitySet="Loaiphong" />
+      <End Role="Phong" EntitySet="Phong" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sinhvien_Phong" Association="Self.FK_Sinhvien_Phong">
+      <End Role="Phong" EntitySet="Phong" />
+      <End Role="Sinhvien" EntitySet="Sinhvien" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sinhvien_Thanhpho" Association="Self.FK_Sinhvien_Thanhpho">
+      <End Role="Thanhpho" EntitySet="Thanhpho" />
+      <End Role="Sinhvien" EntitySet="Sinhvien" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sinhvien_Truong" Association="Self.FK_Sinhvien_Truong">
+      <End Role="Truong" EntitySet="Truong" />
+      <End Role="Sinhvien" EntitySet="Sinhvien" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

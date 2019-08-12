@@ -1,0 +1,386 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QuanLyKTXSVModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Loaiphong">
+    <Key>
+      <PropertyRef Name="MaLP" />
+    </Key>
+    <Property Name="MaLP" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="TenLP" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Tiendien" Type="Int32" />
+    <Property Name="Tiennuoc" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Phieudathutien">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Sonuoc" Type="Int32" />
+    <Property Name="Tongtiennuoc" Type="Int32" />
+    <Property Name="Sodien" Type="Int32" />
+    <Property Name="Tongtiendien" Type="Int32" Nullable="false" />
+    <Property Name="Tongtien" Type="Int32" />
+    <Property Name="Maphong" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Phong">
+    <Key>
+      <PropertyRef Name="Maphong" />
+    </Key>
+    <Property Name="Maphong" Type="Int32" Nullable="false" />
+    <Property Name="Toanha" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Sodien" Type="Int32" />
+    <Property Name="Sonuoc" Type="Int32" />
+    <Property Name="Loaiphong" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Sinhvien">
+    <Key>
+      <PropertyRef Name="MSSV" />
+    </Key>
+    <Property Name="MSSV" Type="Int32" Nullable="false" />
+    <Property Name="Hoten" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Gioitinh" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Truonghoc" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Ngaysinh" Type="DateTime" Precision="0" />
+    <Property Name="SoDT" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Noisinh" Type="Int32" />
+    <Property Name="Maphong" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Taikhoan">
+    <Key>
+      <PropertyRef Name="username" />
+    </Key>
+    <Property Name="username" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Thanhpho">
+    <Key>
+      <PropertyRef Name="MaTP" />
+    </Key>
+    <Property Name="MaTP" Type="Int32" Nullable="false" />
+    <Property Name="TenTP" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Truong">
+    <Key>
+      <PropertyRef Name="Matruong" />
+    </Key>
+    <Property Name="Matruong" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Tentruong" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <Association Name="FK_Phong_Loaiphong">
+    <End Role="Loaiphong" Type="Self.Loaiphong" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Phong" Type="Self.Phong" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Loaiphong">
+        <PropertyRef Name="MaLP" />
+      </Principal>
+      <Dependent Role="Phong">
+        <PropertyRef Name="Loaiphong" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sinhvien_Phong">
+    <End Role="Phong" Type="Self.Phong" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Sinhvien" Type="Self.Sinhvien" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Phong">
+        <PropertyRef Name="Maphong" />
+      </Principal>
+      <Dependent Role="Sinhvien">
+        <PropertyRef Name="Maphong" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sinhvien_Thanhpho">
+    <End Role="Thanhpho" Type="Self.Thanhpho" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Sinhvien" Type="Self.Sinhvien" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Thanhpho">
+        <PropertyRef Name="MaTP" />
+      </Principal>
+      <Dependent Role="Sinhvien">
+        <PropertyRef Name="Noisinh" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sinhvien_Truong">
+    <End Role="Truong" Type="Self.Truong" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Sinhvien" Type="Self.Sinhvien" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Truong">
+        <PropertyRef Name="Matruong" />
+      </Principal>
+      <Dependent Role="Sinhvien">
+        <PropertyRef Name="Truonghoc" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="QuanLyKTXSVEntitiesFinal1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Loaiphongs" EntityType="Self.Loaiphong" />
+    <EntitySet Name="Phieudathutiens" EntityType="Self.Phieudathutien" />
+    <EntitySet Name="Phongs" EntityType="Self.Phong" />
+    <EntitySet Name="Sinhviens" EntityType="Self.Sinhvien" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="Taikhoans" EntityType="Self.Taikhoan" />
+    <EntitySet Name="Thanhphoes" EntityType="Self.Thanhpho" />
+    <EntitySet Name="Truongs" EntityType="Self.Truong" />
+    <AssociationSet Name="FK_Phong_Loaiphong" Association="Self.FK_Phong_Loaiphong">
+      <End Role="Loaiphong" EntitySet="Loaiphongs" />
+      <End Role="Phong" EntitySet="Phongs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sinhvien_Phong" Association="Self.FK_Sinhvien_Phong">
+      <End Role="Phong" EntitySet="Phongs" />
+      <End Role="Sinhvien" EntitySet="Sinhviens" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sinhvien_Thanhpho" Association="Self.FK_Sinhvien_Thanhpho">
+      <End Role="Thanhpho" EntitySet="Thanhphoes" />
+      <End Role="Sinhvien" EntitySet="Sinhviens" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sinhvien_Truong" Association="Self.FK_Sinhvien_Truong">
+      <End Role="Truong" EntitySet="Truongs" />
+      <End Role="Sinhvien" EntitySet="Sinhviens" />
+    </AssociationSet>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(QuanLyKTXSVModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(QuanLyKTXSVModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+    <FunctionImport Name="ups_CapnhatLP">
+      <Parameter Name="MaLP" Mode="In" Type="String" />
+      <Parameter Name="TenLP" Mode="In" Type="String" />
+      <Parameter Name="Tiendien" Mode="In" Type="Decimal" />
+      <Parameter Name="Tiennuoc" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="ups_CapnhatPhong">
+      <Parameter Name="Maphong" Mode="In" Type="Int32" />
+      <Parameter Name="Toanha" Mode="In" Type="String" />
+      <Parameter Name="Sodien" Mode="In" Type="Int32" />
+      <Parameter Name="Sonuoc" Mode="In" Type="Int32" />
+      <Parameter Name="Loaiphong" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="ups_CapnhatSV">
+      <Parameter Name="MSSV" Mode="In" Type="Int32" />
+      <Parameter Name="Hoten" Mode="In" Type="String" />
+      <Parameter Name="Gioitinh" Mode="In" Type="String" />
+      <Parameter Name="Truonghoc" Mode="In" Type="String" />
+      <Parameter Name="Ngaysinh" Mode="In" Type="DateTime" />
+      <Parameter Name="SoDT" Mode="In" Type="String" />
+      <Parameter Name="Noisinh" Mode="In" Type="Int32" />
+      <Parameter Name="Maphong" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="ups_CapnhatTK">
+      <Parameter Name="username" Mode="In" Type="String" />
+      <Parameter Name="password" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="ups_CapnhatTP">
+      <Parameter Name="MaTP" Mode="In" Type="Int32" />
+      <Parameter Name="TenTP" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="ups_CapnhatTruong">
+      <Parameter Name="Matruong" Mode="In" Type="String" />
+      <Parameter Name="Tentruong" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="ups_XoaLP">
+      <Parameter Name="MaLP" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="ups_XoaPhieuthutien">
+      <Parameter Name="Maphong" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="ups_XoaPhong">
+      <Parameter Name="Maphong" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="ups_XoaSV">
+      <Parameter Name="MSSV" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="ups_XoaTK">
+      <Parameter Name="username" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="ups_XoaTP">
+      <Parameter Name="MaTP" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="ups_XoaTruong">
+      <Parameter Name="Matruong" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="usp_Danhsachphong" ReturnType="Collection(QuanLyKTXSVModel.usp_Danhsachphong_Result)" />
+    <FunctionImport Name="usp_DanhsachSV" ReturnType="Collection(QuanLyKTXSVModel.usp_DanhsachSV_Result)" />
+    <FunctionImport Name="usp_DemSLSVtrongPhong" ReturnType="Collection(Int32)">
+      <Parameter Name="Maphong" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="usp_DS_Taikhoan" ReturnType="Collection(QuanLyKTXSVModel.usp_DS_Taikhoan_Result)" />
+    <FunctionImport Name="usp_DSPhong" ReturnType="Collection(QuanLyKTXSVModel.usp_DSPhong_Result)" />
+    <FunctionImport Name="usp_KTDN_TK" ReturnType="Collection(QuanLyKTXSVModel.usp_KTDN_TK_Result)">
+      <Parameter Name="username" Mode="In" Type="String" />
+      <Parameter Name="password" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="usp_LocDSSVtheoMSSV" ReturnType="Collection(QuanLyKTXSVModel.usp_LocDSSVtheoMSSV_Result)">
+      <Parameter Name="MSSV" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="usp_LocSVtheoPhong" ReturnType="Collection(QuanLyKTXSVModel.usp_LocSVtheoPhong_Result)">
+      <Parameter Name="Maphong" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="usp_ThemLP">
+      <Parameter Name="MaLP" Mode="In" Type="String" />
+      <Parameter Name="TenLP" Mode="In" Type="String" />
+      <Parameter Name="Tiendien" Mode="In" Type="Decimal" />
+      <Parameter Name="Tiennuoc" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="usp_Themphieudathu">
+      <Parameter Name="Sonuoc" Mode="In" Type="Int32" />
+      <Parameter Name="Tongtiennuoc" Mode="In" Type="Int32" />
+      <Parameter Name="Sodien" Mode="In" Type="Int32" />
+      <Parameter Name="Tongtiendien" Mode="In" Type="Int32" />
+      <Parameter Name="Tongtien" Mode="In" Type="Int32" />
+      <Parameter Name="Maphong" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="usp_ThemSV">
+      <Parameter Name="MSSV" Mode="In" Type="Int32" />
+      <Parameter Name="Hoten" Mode="In" Type="String" />
+      <Parameter Name="Gioitinh" Mode="In" Type="String" />
+      <Parameter Name="Truonghoc" Mode="In" Type="String" />
+      <Parameter Name="Ngaysinh" Mode="In" Type="DateTime" />
+      <Parameter Name="SoDT" Mode="In" Type="String" />
+      <Parameter Name="Noisinh" Mode="In" Type="Int32" />
+      <Parameter Name="Maphong" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="usp_ThemTK">
+      <Parameter Name="username" Mode="In" Type="String" />
+      <Parameter Name="password" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="usp_ThemTP">
+      <Parameter Name="MaTP" Mode="In" Type="Int32" />
+      <Parameter Name="TenTP" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="usp_ThemTruong">
+      <Parameter Name="Matruong" Mode="In" Type="String" />
+      <Parameter Name="Tentruong" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="usp_TheuPhong">
+      <Parameter Name="Maphong" Mode="In" Type="Int32" />
+      <Parameter Name="Toanha" Mode="In" Type="String" />
+      <Parameter Name="Sodien" Mode="In" Type="Int32" />
+      <Parameter Name="Sonuoc" Mode="In" Type="Int32" />
+      <Parameter Name="Loaiphong" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="usp_Thongkediennuoc" ReturnType="Collection(QuanLyKTXSVModel.usp_Thongkediennuoc_Result)" />
+    <FunctionImport Name="usp_Tiendiennuoc" ReturnType="Collection(QuanLyKTXSVModel.usp_Tiendiennuoc_Result)">
+      <Parameter Name="Maphong" Mode="In" Type="Int32" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="usp_Danhsachphong_Result">
+    <Property Type="String" Name="MaLP" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="TenLP" Nullable="false" MaxLength="10" />
+    <Property Type="Int32" Name="Tiendien" Nullable="true" />
+    <Property Type="Int32" Name="Tiennuoc" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="usp_DanhsachSV_Result">
+    <Property Type="Int32" Name="MSSV" Nullable="false" />
+    <Property Type="String" Name="Hoten" Nullable="true" MaxLength="10" />
+    <Property Type="DateTime" Name="Ngaysinh" Nullable="true" />
+    <Property Type="String" Name="Tentruong" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="TenTP" Nullable="true" MaxLength="10" />
+    <Property Type="Int32" Name="Maphong" Nullable="false" />
+    <Property Type="String" Name="Gioitinh" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="SoDT" Nullable="false" MaxLength="10" />
+  </ComplexType>
+  <ComplexType Name="usp_DS_Taikhoan_Result">
+    <Property Type="String" Name="username" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="password" Nullable="true" MaxLength="10" />
+  </ComplexType>
+  <ComplexType Name="usp_DSPhong_Result">
+    <Property Type="Int32" Name="Maphong" Nullable="false" />
+    <Property Type="String" Name="Toanha" Nullable="true" MaxLength="10" />
+    <Property Type="Int32" Name="Sodien" Nullable="true" />
+    <Property Type="Int32" Name="Sonuoc" Nullable="true" />
+    <Property Type="String" Name="TenLP" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="MaLP" Nullable="false" MaxLength="10" />
+  </ComplexType>
+  <ComplexType Name="usp_KTDN_TK_Result">
+    <Property Type="String" Name="username" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="password" Nullable="true" MaxLength="10" />
+  </ComplexType>
+  <ComplexType Name="usp_LocDSSVtheoMSSV_Result">
+    <Property Type="Int32" Name="MSSV" Nullable="false" />
+    <Property Type="String" Name="Hoten" Nullable="true" MaxLength="10" />
+    <Property Type="DateTime" Name="Ngaysinh" Nullable="true" />
+    <Property Type="String" Name="Tentruong" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="TenTP" Nullable="true" MaxLength="10" />
+    <Property Type="Int32" Name="Maphong" Nullable="false" />
+    <Property Type="String" Name="SoDT" Nullable="false" MaxLength="10" />
+  </ComplexType>
+  <ComplexType Name="usp_LocSVtheoPhong_Result">
+    <Property Type="Int32" Name="MSSV" Nullable="false" />
+    <Property Type="String" Name="Hoten" Nullable="true" MaxLength="10" />
+    <Property Type="DateTime" Name="Ngaysinh" Nullable="true" />
+    <Property Type="String" Name="Tentruong" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="TenTP" Nullable="true" MaxLength="10" />
+    <Property Type="Int32" Name="Maphong" Nullable="false" />
+    <Property Type="String" Name="SoDT" Nullable="false" MaxLength="10" />
+  </ComplexType>
+  <ComplexType Name="usp_Thongkediennuoc_Result">
+    <Property Type="Int32" Name="Tongsonuoc1T" Nullable="true" />
+    <Property Type="Int32" Name="Tongtiennuoc1T" Nullable="true" />
+    <Property Type="Int32" Name="Tongsodien1T" Nullable="true" />
+    <Property Type="Int32" Name="Tongtiendien1T" Nullable="true" />
+    <Property Type="Int32" Name="Tongtien1T" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="usp_Tiendiennuoc_Result">
+    <Property Type="Int32" Name="Thanhtiendien" Nullable="true" />
+    <Property Type="Int32" Name="Thanhtiennuoc" Nullable="true" />
+    <Property Type="Int32" Name="Maphong" Nullable="false" />
+    <Property Type="Int32" Name="Tong" Nullable="true" />
+    <Property Type="Int32" Name="Sodien" Nullable="true" />
+    <Property Type="Int32" Name="Sonuoc" Nullable="true" />
+  </ComplexType>
+</Schema>
